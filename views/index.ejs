@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My App Landing Page</title>
+    <style>
+      :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --background-color: #f4f4f4;
+        --text-color: #333;
+        --button-color: #3498db;
+        --button-hover: #2980b9;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
+
+      header {
+        background: var(--primary-color);
+        color: white;
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+
+      header h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        margin-top: 0;
+        opacity: 0.9;
+      }
+
+      .buttons {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .buttons a {
+        display: inline-block;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        background-color: var(--button-color);
+        color: white;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+
+      .buttons a:hover {
+        background-color: var(--button-hover);
+      }
+
+      .features {
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 0 1rem;
+        text-align: center;
+      }
+
+      .features h2 {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .features p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 2rem auto;
+        color: #555;
+      }
+
+      footer {
+        background: var(--primary-color);
+        color: white;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 2rem;
+        }
+
+        .buttons {
+          flex-direction: column;
+        }
+
+        .buttons a {
+          width: 100%;
+          max-width: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to MyApp</h1>
+      <p>Your one-stop platform to share ideas, connect, and grow.</p>
+      <div class="buttons">
+        <a href="/signin">Sign In</a>
+        <a href="/signup">Sign Up</a>
+      </div>
+    </header>
+
+    <section class="features">
+      <h2>Why Choose MyApp?</h2>
+      <p>
+        Whether you're writing, designing, or just browsing, MyApp offers the
+        tools and community to make your creative journey seamless and fun.
+      </p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 MyApp. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

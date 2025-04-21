@@ -1,0 +1,30 @@
+<style>
+  .error-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .error-list li {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid #ef5350;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: "Segoe UI", sans-serif;
+  }
+
+  .error-list li:last-child {
+    margin-bottom: 0;
+  }
+</style>
+
+<% if (locals.errors) { %>
+<ul class="error-list">
+  <% errors.forEach(function(error) { %>
+  <li><%= error.msg %></li>
+  <% }); %>
+</ul>
+<% } %>

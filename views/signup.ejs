@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <style>
+      :root {
+        --primary-color: #2c3e50;
+        --accent-color: #3498db;
+        --background-color: #f4f4f4;
+        --input-border: #ccc;
+        --error-color: #e74c3c;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--background-color);
+        color: var(--primary-color);
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 4rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--accent-color);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      label {
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        padding: 0.75rem;
+        border: 1px solid var(--input-border);
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .name-group {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .name-group .form-group {
+        flex: 1;
+      }
+
+      button {
+        padding: 0.75rem;
+        font-size: 1rem;
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      .link {
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      .link a {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      .link a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 500px) {
+        .name-group {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create Account</h1>
+      <%- include("partials/errors.ejs") %>
+      <form action="/signup" method="POST">
+        <div class="name-group">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            required
+          />
+        </div>
+
+        <button type="submit">Sign Up</button>
+
+        <div class="link">
+          <p>Already have an account? <a href="/signin">Sign in here</a></p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
