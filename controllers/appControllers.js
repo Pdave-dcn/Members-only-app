@@ -1,14 +1,9 @@
 import { body, validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
-import {
-  createUser,
-  getPosts,
-  createUserPost,
-  updateUserMembership,
-  deletePost,
-} from "../db/queries.js";
+import { DatabaseService } from "../db/queries.js";
 import passport from "passport";
-import { parse } from "dotenv";
+
+const db = new DatabaseService();
 
 const validateUser = [
   body("firstName")
@@ -54,7 +49,7 @@ export const signUpPost = [
       const lastName = req.body.lastName;
       const username = req.body.username;
 
-      const newUser = await createUser(
+      const newUser = await db.createUser(
         firstName,
         lastName,
         username,
@@ -98,7 +93,7 @@ export const signInPost = (req, res, next) => {
 };
 
 export const dashboardGet = async (req, res) => {
-  const result = await getPosts();
+  const result = await db.getPosts();
 
   res.render("dashboard", { user: req.user, posts: result });
 };
@@ -131,7 +126,7 @@ export const createPostPost = [
       const postTitle = req.body.title;
       const postContent = req.body.content;
 
-      await createUserPost(postTitle, postContent, userId);
+      await db.createUserPost(postTitle, postContent, userId);
 
       return res.redirect("/dashboard");
     } catch (error) {
@@ -161,7 +156,7 @@ export const joinClubPost = [
     const userId = req.user.id;
     const membershipStatus = "premium";
 
-    await updateUserMembership(userId, membershipStatus);
+    await db.updateUserMembership(userId, membershipStatus);
     res.redirect("/dashboard");
   },
 ];
@@ -184,7 +179,7 @@ export const adminPost = [
 
     const userId = req.user.id;
     const membershipStatus = "admin";
-    await updateUserMembership(userId, membershipStatus);
+    await db.updateUserMembership(userId, membershipStatus);
 
     res.redirect("/dashboard");
   },
@@ -199,7 +194,7 @@ export const deletePostGet = async (req, res) => {
   }
 
   try {
-    await deletePost(postId);
+    await db.deletePost(postId);
     res.redirect("/dashboard");
   } catch (error) {
     console.error("Error in deletePostGet: ", error);

@@ -9,9 +9,11 @@ import passport from "passport";
 import session from "express-session";
 import pgSession from "connect-pg-simple";
 import localStrategy from "passport-local";
-import { getUserByUsername } from "./db/queries.js";
+import { DatabaseService } from "./db/queries.js";
 import pool from "./db/pool.js";
 import bcrypt from "bcryptjs";
+
+const db = new DatabaseService();
 
 const PORT = 3000;
 const app = express();
@@ -59,7 +61,7 @@ const LocalStrategy = localStrategy.Strategy;
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
-      const user = await getUserByUsername(username);
+      const user = await db.getUserByUsername(username);
 
       if (!user) return done(null, false, { message: "Incorrect username" });
 
